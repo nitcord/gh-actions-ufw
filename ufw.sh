@@ -1,0 +1,1 @@
+curl -s https://api.github.com/meta | awk '/"actions"/,/]/' | grep -oE '([0-9]{1,3}\.){3}[0-9]{1,3}\/[0-9]+|([0-9a-fA-F:]+\/[0-9]+)' | while read -r ip; do ufw allow proto tcp from "$ip" to any port 22; done
